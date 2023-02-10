@@ -27,7 +27,7 @@ def play_time():
     #obtenir le titre de la musique suivante
     song = song_box.get(ACTIVE)
     #ajouter toute la structure du dossier et le .mp3 pour pouvoir lire la musique suivante
-    song = f'C:/Users/lucas/OneDrive/Documents/Python/Pool project/Player Music/musique/{song}.mp3'
+    song = f'{song}.mp3'
     #obtenir la longeur totale d'un son avec mutagen (et merci les tutos j'aurai jamais trouvé tout seul)
     song_mut = MP3(song)
     #obtenir la longeur totale
@@ -75,10 +75,9 @@ def play_time():
 
 #fonction add_song
 def add_song():
-    song = filedialog.askopenfilename(initialdir=r'C:\Users\lucas\OneDrive\Documents\Python\Pool project\Player Music\musique', title='Choose the songs to import', filetypes=(("mp3 Files", "*.mp3"), ))
+    song = filedialog.askopenfilename(initialdir='\musique', title='Choose the songs to import', filetypes=(("mp3 Files", "*.mp3"), ))
    
     #Enlever l'affichage du chemin dans la listbox pour garder uniquement le titre
-    song = song.replace("C:/Users/lucas/OneDrive/Documents/Python/Pool project/Player Music/musique/", "")
     song = song.replace (".mp3", "")
 
     #inserer la musique dans la listbox
@@ -86,11 +85,10 @@ def add_song():
 
 #fonction add_many_songs
 def add_many_songs():
-    songs = filedialog.askopenfilenames(initialdir=r'C:\Users\lucas\OneDrive\Documents\Python\Pool project\Player Music\musique', title='Choose the songs to import', filetypes=(("mp3 Files", "*.mp3"), ))
+    songs = filedialog.askopenfilenames(initialdir='\musique', title='Choose the songs to import', filetypes=(("mp3 Files", "*.mp3"), ))
 
     #créer une boucle pour insérer plusieures musiques dans la playlist
     for song in songs:
-        song = song.replace("C:/Users/lucas/OneDrive/Documents/Python/Pool project/Player Music/musique/", "")
         song = song.replace (".mp3", "")
         song_box.insert(END,song)
     
@@ -100,7 +98,9 @@ def play():
     global stopped
     stopped = False
     song = song_box.get(ACTIVE)
-    song = f'C:/Users/lucas/OneDrive/Documents/Python/Pool project/Player Music/musique/{song}.mp3'
+    song = f'{song}.mp3'
+    print(song)
+
     mixer.music.load(song)
     mixer.music.play(loops=0)
 
@@ -138,7 +138,7 @@ def next_song():
     #obtenir le titre de la musique suivante
     song = song_box.get(next_one)
     #ajouter toute la structure du dossier et le .mp3 pour pouvoir lire la musique suivante
-    song = f'C:/Users/lucas/OneDrive/Documents/Python/Pool project/Player Music/musique/{song}.mp3'
+    song = f'{song}.mp3'
     #charger et lire la musique
     mixer.music.load(song)
     mixer.music.play(loops=0)
@@ -163,7 +163,7 @@ def prev_song():
     #obtenir le titre de la musique précédente
     song = song_box.get(next_one)
     #ajouter toute la structure du dossier et le .mp3 pour pouvoir lire la musique précédente
-    song = f'C:/Users/lucas/OneDrive/Documents/Python/Pool project/Player Music/musique/{song}.mp3'
+    song = f'{song}.mp3'
     #charger et lire la musique
     mixer.music.load(song)
     mixer.music.play(loops=0)
@@ -213,7 +213,7 @@ def pause(is_paused):
 def slide(x):
    # slider_label.config(text=f'{int(my_slider.get())} sur {int(song_length)} ')
     song = song_box.get(ACTIVE)
-    song = f'C:/Users/lucas/OneDrive/Documents/Python/Pool project/Player Music/musique/{song}.mp3'
+    song = f'{song}.mp3'
     mixer.music.load(song)
     mixer.music.play(loops=0, start=int(my_slider.get()))
 
